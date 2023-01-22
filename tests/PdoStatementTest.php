@@ -1,5 +1,8 @@
 <?php
-class PdoStatementTest extends PHPUnit_Framework_TestCase
+
+	use PHPUnit\Framework\TestCase;
+
+	class PdoStatementTest extends TestCase
 {
     public function testFetchAllWithNoArguments()
     {
@@ -96,7 +99,7 @@ class PdoStatementTest extends PHPUnit_Framework_TestCase
         $r = new Pseudo\Result();
         $r->setErrorInfo("Storage engine error");
         $p = new Pseudo\PdoStatement($r);
-        $this->assertEquals("Storage engine error", $p->errorInfo());
+        $this->assertEquals("Storage engine error", $p->errorInfo()[0]);
     }
 
     public function testColumnCount()

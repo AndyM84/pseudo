@@ -1,12 +1,15 @@
 <?php
-class ResultTest extends PHPUnit_Framework_TestCase
+
+	use PHPUnit\Framework\TestCase;
+
+	class ResultTest extends TestCase
 {
     public function testSetErrorCode()
     {
         $r = new Pseudo\Result;
         $r->setErrorCode("HY000");
         $this->assertEquals("HY000", $r->getErrorCode());
-        $this->setExpectedException("Pseudo\\Exception");
+        $this->expectException("Pseudo\\Exception");
         $r->setErrorCode("121");
     }
 

@@ -5,7 +5,7 @@ class ResultCollection implements \Countable
 {
     private $queries = [];
     
-    public function count()
+    public function count(): int
     {
         return count($this->queries);
     }

@@ -7,13 +7,13 @@ class Pdo extends \PDO
     private $inTransaction = false;
     private $queryLog;
 
-    public function prepare($statement, $driver_options = null)
+    public function prepare(string $query, array $options = null): \PDOStatement|false
     {
-        $result = $this->mockedQueries->getResult($statement);
-        return new PdoStatement($result, $this->queryLog, $statement);
+        $result = $this->mockedQueries->getResult($query);
+        return new PdoStatement($result, $this->queryLog, $query);
     }
 
-    public function beginTransaction()
+    public function beginTransaction(): bool
     {
         if (!$this->inTransaction) {
             $this->inTransaction = true;
@@ -23,7 +23,7 @@ class Pdo extends \PDO
         // not yet implemented
     }
 
-    public function commit()
+    public function commit(): bool
     {
         if ($this->inTransaction()) {
             $this->inTransaction = false;
@@ -33,7 +33,7 @@ class Pdo extends \PDO
         // not yet implemented
     }
 
-    public function rollBack()
+    public function rollBack(): bool
     {
         if ($this->inTransaction()) {
             $this->inTransaction = false;
@@ -42,17 +42,17 @@ class Pdo extends \PDO
         // not yet implemented
     }
 
-    public function inTransaction()
+    public function inTransaction(): bool
     {
         return $this->inTransaction;
     }
 
-    public function setAttribute($attribute, $value)
+    public function setAttribute(int $attribute, mixed $value): bool
     {
         // not yet implemented
     }
 
-    public function exec($statement)
+    public function exec(string $statement): int|false
     {
         $result = $this->query($statement);
         if ($result) {
@@ -67,7 +67,7 @@ class Pdo extends \PDO
      * @param mixed ...$fetchModeArgs
      * @return PdoStatement
      */
-    public function query(string $query, ?int $fetchMode = null, mixed ...$fetchModeArgs)
+    public function query(string $query, ?int $fetchMode = null, mixed ...$fetchModeArgs): \PDOStatement|false
     {
         if ($this->mockedQueries->exists($query)) {
             $result = $this->mockedQueries->getResult($query);
@@ -84,7 +84,7 @@ class Pdo extends \PDO
      * @param null $name
      * @return int
      */
-    public function lastInsertId($name = null)
+    public function lastInsertId(?string $name = null): string|false
     {
         $result = $this->getLastResult();
         if ($result) {
@@ -103,22 +103,22 @@ class Pdo extends \PDO
         return $result;
     }
 
-    public function errorCode()
+    public function errorCode(): ?string
     {
         // not yet implemented
     }
 
-    public function errorInfo()
+    public function errorInfo(): array
     {
         // not yet implemented
     }
 
-    public function getAttribute($attribute)
+    public function getAttribute(int $attribute): mixed
     {
         // not yet implemented
     }
 
-    public function quote($string, $parameter_type = PDO::PARAM_STR)
+    public function quote(string $string, int $type = PDO::PARAM_STR): string|false
     {
         // not yet implemented
     }

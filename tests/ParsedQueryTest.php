@@ -1,5 +1,8 @@
 <?php
-class ParsedQueryTest extends PHPUnit_Framework_TestCase
+
+	use PHPUnit\Framework\TestCase;
+
+class ParsedQueryTest extends TestCase
 {
     public function testQueryHashing()
     {

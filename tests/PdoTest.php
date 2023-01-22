@@ -1,5 +1,8 @@
 <?php
-class PdoTest extends PHPUnit_Framework_TestCase
+
+	use PHPUnit\Framework\TestCase;
+
+	class PdoTest extends TestCase
 {
     public function testMock()
     {
@@ -184,6 +187,6 @@ class PdoTest extends PHPUnit_Framework_TestCase
         } catch (Exception $e) {
             $message = $e->getMessage();
         }
-        $this->assertRegExp('/SELECT 123/', $message);
+        $this->assertMatchesRegularExpression('/SELECT 123/', $message);
     }
 }

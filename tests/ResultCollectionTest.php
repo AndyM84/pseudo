@@ -1,10 +1,13 @@
 <?php
-class ResultCollectionTest extends PHPUnit_Framework_TestCase
+
+	use PHPUnit\Framework\TestCase;
+
+	class ResultCollectionTest extends TestCase
 {
     public function testGetResultWithoutMocking()
     {
         $r = new Pseudo\ResultCollection();
-        $this->setExpectedException("Pseudo\\Exception");
+				$this->expectException("Pseudo\\Exception");
         $r->getResult("SELECT 1");
     }
     
@@ -17,6 +20,6 @@ class ResultCollectionTest extends PHPUnit_Framework_TestCase
         } catch (Exception $e) {
             $message = $e->getMessage();
         }
-        $this->assertRegExp('/SELECT 123/', $message);
+        $this->assertMatchesRegularExpression('/SELECT 123/', $message);
     }
 }
