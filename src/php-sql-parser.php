@@ -428,7 +428,7 @@ if (!defined('HAVE_PHP_SQL_PARSER')) {
      * @author arothe@phosco.info
      */
     class PHPSQLParser extends PHPSQLParserUtils {
-
+				private $parsed;
         private $lexer;
 
         public function __construct($sql = false, $calcPositions = false) {
@@ -462,6 +462,7 @@ if (!defined('HAVE_PHP_SQL_PARSER')) {
 
             # store the parsed queries
             $this->parsed = $queries;
+
             return $this->parsed;
         }
 
