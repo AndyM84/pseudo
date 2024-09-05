@@ -105,22 +105,22 @@ class Pdo extends \PDO
 
     public function errorCode(): ?string
     {
-        // not yet implemented
+        return null;
     }
 
     public function errorInfo(): array
     {
-        // not yet implemented
+        return [];
     }
 
     public function getAttribute(int $attribute): mixed
     {
-        // not yet implemented
+        return null;
     }
 
     public function quote(string $string, int $type = PDO::PARAM_STR): string|false
     {
-        // not yet implemented
+        return $string;
     }
 
     /**
